@@ -1,1 +1,33 @@
-<p>credits works!</p>
+<div class="container">
+    <div class="row">
+        
+    </div>
+    <div id="cardContainer">
+      <div *ngFor="let card of cards; let i = index" class="card my-2 border-primary">
+        <div class="card-header">Ders {{ i + 1 }}</div>
+            <div class="card-body">
+                <label for="kredi{{ i }}">Kredi sayısı:</label>
+                <input name="kredi{{ i }}" type="number" class="form-control" [(ngModel)]="cards[i].kredi">
+                <label for="not{{ i }}">Harf Notunuz</label>
+                <select class="form-select" name="not{{ i }}" id="" ngModel="card.not" (ngModelChange)="handleChange($event, i)">
+                <option disabled>Seçiniz</option>
+                <option [ngValue]="'AA'" [selected]="card.not == 'AA'">AA</option>
+                <option [ngValue]="'BA'" [selected]="card.not == 'BA'">BA</option>
+                <option [ngValue]="'BB'" [selected]="card.not == 'BB'">BB</option>
+                <option [ngValue]="'CB'" [selected]="card.not == 'CB'">CB</option>
+                <option [ngValue]="'CC'" [selected]="card.not == 'CC'">CC</option>
+                <option [ngValue]="'DC'" [selected]="card.not == 'DC'">DC</option>
+                <option [ngValue]="'DD'" [selected]="card.not == 'DD'">DD</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container my-2">
+    <div class="row">
+        <button (click)="hesapla()" class="btn btn-danger col-6">GANO Hesapla</button>
+        <button (click)="addCard()" class="btn btn-success col-6">Yeni Kart Ekle</button>
+        <p class="text-center fs-2 fw-bolder" *ngIf="gano" [class.text-danger]="gano<2" [class.text-success]="gano>3" >GANO: {{ gano }}</p>
+        
+    </div>
+</div>
